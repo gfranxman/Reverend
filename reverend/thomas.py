@@ -182,7 +182,9 @@ class Bayes(object):
         """ extracts the probabilities of tokens in a message
         """
         probs = [(word, pool[word]) for word in words if word in pool]
-        probs.sort(lambda x,y: cmp(y[1],x[1]))
+        #probs.sort(lambda x,y: cmp(y[1],x[1]))
+        probs.sort(lambda x: x[1])
+        probs.reverse()
         return probs[:2048]
 
     def train(self, pool, item, uid=None):
@@ -257,7 +259,9 @@ class Bayes(object):
             if len(p) != 0:
                 res[pname]=self.combiner(p, pname)
         res = list(res.items())
-        res.sort(lambda x,y: cmp(y[1], x[1]))
+        #res.sort(lambda x,y: cmp(y[1], x[1]))
+        res.sort(lambda x: x[1])
+        res.reverse()
         return res        
 
     def robinson(self, probs, ignore):

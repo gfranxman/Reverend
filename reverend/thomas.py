@@ -183,7 +183,7 @@ class Bayes(object):
         """
         probs = [(word, pool[word]) for word in words if word in pool]
         #probs.sort(lambda x,y: cmp(y[1],x[1]))
-        probs.sort(lambda x: x[1])
+        probs.sort(key=lambda x: x[1])
         probs.reverse()
         return probs[:2048]
 
@@ -260,7 +260,7 @@ class Bayes(object):
                 res[pname]=self.combiner(p, pname)
         res = list(res.items())
         #res.sort(lambda x,y: cmp(y[1], x[1]))
-        res.sort(lambda x: x[1])
+        res.sort(key=lambda x: x[1])
         res.reverse()
         return res        
 
